@@ -1,0 +1,2 @@
+# neovium
+Neovim config
