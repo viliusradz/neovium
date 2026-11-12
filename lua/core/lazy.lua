@@ -27,11 +27,13 @@ require("lazy").setup({
 	spec = {
 		-- import plugins
 		{ import = "core.plugins" },
+		{ import = "themes" },
+		{ import = "additions" }
 	},
 	-- Configure other settings
 	-- colorscheme that will be used when installing the plugins
 	install = {
-		colorscheme = { "kanagawa" }
+		-- colorscheme = { "kanagawa-dragon" }
 	},
 	-- automatically check for plugin updates
 	checker = {
