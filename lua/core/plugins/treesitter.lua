@@ -1,5 +1,16 @@
 return {
 	'nvim-treesitter/nvim-treesitter',
 	lazy = false,
-	build = ':TSUpdate'
+	-- build = ':TSUpdate',
+	opts = {
+		indent = { enable = true },
+		highlight = { enable = true},
+		folds = { enable = true },
+
+		ensure_installed = {
+			"lua",
+			"bash",
+			"markdown"
+		},
+	},
 }
