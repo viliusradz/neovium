@@ -73,7 +73,6 @@ do
 			end,
 		},
 	}
-
 	vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { 
 		desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -102,3 +101,6 @@ require("kanagawa").load("wave")
 require("core.config.lazy")
 require("core.config.treesitter")
 require("core.config.telescope")
+
+require("core.config.lsp.setup-buffer")
+require("core.config.lsp.setup-servers")

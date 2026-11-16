@@ -28,6 +28,7 @@ require("lazy").setup({
 		-- import plugins
 		{ import = "core.plugins" },
 		{ import = "themes" },
+		{ import = "core.plugins.lsp" },
 		{ import = "additions.plugins" }
 	},
 	-- Configure other settings

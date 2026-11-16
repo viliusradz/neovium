@@ -1,0 +1,1 @@
+--TODO: Write config for trouble [https://www.lazyvim.org/plugins/editor]
