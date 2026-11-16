@@ -28,7 +28,7 @@ require("lazy").setup({
 		-- import plugins
 		{ import = "core.plugins" },
 		{ import = "themes" },
-		{ import = "additions" }
+		{ import = "additions.plugins" }
 	},
 	-- Configure other settings
 	-- colorscheme that will be used when installing the plugins

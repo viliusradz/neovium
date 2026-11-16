@@ -2,6 +2,7 @@
 pcall(require("telescope").load_extension, "ui-select")
 pcall(require("telescope").load_extension, "fzf")
 
+
 -- Define keymaps (the better way)
 
 local builtin = require("telescope.builtin")
@@ -54,4 +55,14 @@ vim.keymap.set('n', "<leader>sn", function()
 		follow = true
 	}
 end, { desc = "[S]earch [N]eovim Config" })
+
+
+-- Show recent buffers such that the previous buffer is at the top
+vim.keymap.set('n', "<leader>,", function()
+	builtin.buffers({sort_mru = true, sort_lastused = true})
+end, { desc = "[,] Switch Buffer" })
+
+
+
+
 

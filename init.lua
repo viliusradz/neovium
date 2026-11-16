@@ -99,5 +99,6 @@ require("kanagawa").load("wave")
 
 -- Automatic treesitter parser installation 
 -- 	without using lazy spec
+require("core.config.lazy")
 require("core.config.treesitter")
 require("core.config.telescope")
