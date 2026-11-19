@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			local highlight_augroup = vim.api.nvim_create_augroup("neovium-lsp-highlight", { clear = false })
 
 			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-				buffer = event.buf, 
+				buffer = event.buf,
 				group = highlight_augroup,
 				callback = vim.lsp.buf.document_highlight,
 			})

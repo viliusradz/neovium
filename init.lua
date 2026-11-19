@@ -48,31 +48,6 @@ do
 	-- escape search highlights
 	vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-	-- config diagnostic
-	vim.diagnostic.config {
-		update_in_insert = false,
-		severity_sort = true,
-		float = {
-			border = 'rounded',
-			source = 'if_many'
-		},
-		underline = { severity = { min = vim.diagnostic.severity.WARN }},
-
-		-- Can switch between
-		-- virtual_text = true, -- text at end of lines
-		virtual_lines = true,
-
-		-- Auto open float 
-		jump = {
-			on_jump = function(_, bufnr)
-				vim.diagnostic.open_float {
-					bufnr = bufnr,
-					scope = 'cursor',
-					focus = false,
-				}
-			end,
-		},
-	}
 	vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { 
 		desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -102,5 +77,6 @@ require("core.config.lazy")
 require("core.config.treesitter")
 require("core.config.telescope")
 
+require("core.config.lsp.diagnostics")
 require("core.config.lsp.setup-buffer")
 require("core.config.lsp.setup-servers")
