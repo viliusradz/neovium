@@ -57,7 +57,7 @@ return {
 					return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
 				elseif 1 == vim.fn.executable("find") then
 					return { "find", ".", "-type", "f" }
-				elseif 1 == ivm.fn.executable("where") then
+				elseif 1 == vim.fn.executable("where") then
 					return { "where", "/r", ".", "*" }
 				end
 			end

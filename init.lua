@@ -80,3 +80,7 @@ require("core.config.telescope")
 require("core.config.lsp.diagnostics")
 require("core.config.lsp.setup-buffer")
 require("core.config.lsp.setup-servers")
+
+
+-- Custom autocmds (addons)
+require("additions.config.autocmd")

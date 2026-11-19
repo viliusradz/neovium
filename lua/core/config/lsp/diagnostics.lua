@@ -7,12 +7,8 @@ vim.diagnostic.config {
 		source = 'if_many'
 	},
 	underline = { severity = { min = vim.diagnostic.severity.WARN }},
-
-	-- Can switch between
-	-- virtual_text = true, -- text at end of lines
-	-- virtual_lines = true,
-	virtual_text = false;
-	virtual_lines = false;
+	virtual_text = false,
+	virtual_lines = false,
 
 	-- Auto open float 
 	jump = {
@@ -26,8 +22,11 @@ vim.diagnostic.config {
 	},
 }
 
+
 vim.api.nvim_create_autocmd("CursorHold", {
 	callback = function()
+
+		-- Don't open if already shown
 		for _, win in ipairs(vim.api.nvim_list_wins()) do
 			if vim.api.nvim_win_get_config(win).relative ~= "" then
 				return
@@ -51,3 +50,21 @@ vim.api.nvim_create_autocmd("CursorHold", {
 		})
 	end
 })
+
+-- vim.api.nvim_create_autocmd("CursorHold", {
+-- 	callback = function()
+-- 		local clients = vim.lsp.get_clients({
+-- 			bufnr = 0,
+-- 			method = "textDocument/signatureHelp"
+-- 		})
+-- 		if #clients == 0 then
+-- 			-- returns if lsp not supports signature help
+-- 			return 
+-- 		end
+-- 		vim.lsp.buf.signature_help({
+-- 			focusable = false,
+-- 			silent = true  -- Do not show "no signature help avail"
+-- 		})
+-- 	end
+-- })
+
