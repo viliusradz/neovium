@@ -41,6 +41,10 @@ vim.api.nvim_create_autocmd("CursorHold", {
 				"InsertEnter",
 				"FocusLost"
 			},
+			severity = { 
+				vim.diagnostic.severity.WARN,
+				vim.diagnostic.severity.ERROR
+			},
 			source = "always",
 			prefix = " ",
 			scope = "line"
