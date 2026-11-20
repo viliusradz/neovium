@@ -49,6 +49,7 @@ return {
 			menu = {
 				draw = {
 					treesitter = { "lsp" },
+					padding = 1
 				}
 			},
 			documentation = {
@@ -61,7 +62,7 @@ return {
 		},
 
 		-- Expermental signature help support
-		-- signature = { enabled = true },
+		signature = { enabled = true },
 
 		sources = {
 			-- adding any nvim-cmp sources here will enable them
@@ -97,7 +98,7 @@ return {
 		}
 	},
 
-	---@param opts blink.cmp.config | { sources: { compat: string[] } }
+	---@param opts blink.cmp.Config | { sources: { compat: string[] } }
 	config = function(_, opts)
 		-- if opts.snippets and opts.snippets.preset == "default" then
 		-- 	opts.snippets.expand = LazyVim.cmp.expand
@@ -109,7 +110,7 @@ return {
 			opts.sources.providers[source] = vim.tbl_deep_extend( "force",
 				{ name = source, module = "blink.compat.source" },
 				opts.sources.providers[source] or {})
-			if type(enabled) == "table" and not vim.tbl_contains(enabled, srouce) then
+			if type(enabled) == "table" and not vim.tbl_contains(enabled, source) then
 				table.insert(enabled, source)
 			end
 		end
@@ -145,6 +146,5 @@ return {
 			end
 		end
 		require("blink.cmp").setup(opts)
-
 	end
 }

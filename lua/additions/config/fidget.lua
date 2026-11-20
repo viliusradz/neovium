@@ -1,0 +1,1 @@
+-- Setup notification handling (vim.notify) not only lsp

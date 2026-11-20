@@ -1,35 +1,41 @@
--- Documentation mainly from kickstart.nvim
---- @type table<string, vim.lsp.Config>
-local servers = {
-	lua_ls = {
-		on_init = function(client)
-			client.server_capabilities.documentFormattingProvider = false -- disable formatting
-			
-			if client.workspace_folders then
-				local path = client.workspace_folders[1].name
-				if path ~= vim.fn.stdpath "config" and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "./luarc.jsonc")) then return end
-			end
+---@param path string
+---@return string
+local get_module = function (path)
+	local module_path = vim.split(path, "lua/")[2]
+	return string.sub(module_path, 0,  -5)
+end
+---@param server_table LspConfig
+---@return string | nil, table | nil
+local get_optional_arg = function (server_table)
+	for k, v in pairs(server_table) do
+		if type(k) == "string" and type(v) == "table" then
+			return k,v
+		end
+	end
+	return nil
+end
 
-			local current_settings = client.config.settings
-			client.config.settings.Lua = vim.tbl_deep_extend("force", current_settings.Lua, {
-				runtime = {
-					version = "LuaJIT",
-					path = { "lua/?.lua", "lua/?/init.lua" }
-				},
-				workspace = {
-					checkThirdParty = false,
-					library = vim.api.nvim_get_runtime_file("", true)
-				}
-			})
-		end,
-		--- @type lspconfig.settings.lua_ls
-		settings = {
-			Lua = {
-				format = { enable = false }
-			}
-		}
-	}
-}
+-- Get all language servers from lua/language_servers
+local lang_path = "language_servers"
+local servers = {}
+local lsp_files = vim.api.nvim_get_runtime_file("lua/" .. lang_path .. "/*.{lua}", true)
+
+
+for _, file in ipairs(lsp_files) do
+	local module_name = get_module(file)
+
+	---@type LspConfig
+	local result = require(module_name)
+	if result.enabled then
+		local lsp_name, lsp_config = get_optional_arg(result)
+		if lsp_name ~= nil then
+			servers[lsp_name] = lsp_config
+		else
+			vim.notify("lsp enabled in module " .. module_name .. " but no valid lsp entry", "error")
+		end
+	end
+end
+
 
 local ensure_installed = vim.tbl_keys(servers or {})
 

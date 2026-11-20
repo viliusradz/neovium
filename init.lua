@@ -42,6 +42,7 @@ do
 	vim.o.scrolloff = 10
 
 	vim.o.confirm = true
+	vim.o.signcolumn = "yes:2"
 end
 
 do

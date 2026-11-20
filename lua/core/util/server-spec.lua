@@ -1,0 +1,3 @@
+---@class LspConfig
+---@field enabled boolean
+---@field [string] table
